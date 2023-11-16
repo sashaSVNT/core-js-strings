@@ -69,7 +69,7 @@ function concatenateStrings(value1, value2) {
  *   getFirstChar('') => ''
  */
 function getFirstChar(value) {
-  return value.substring(0, 1);
+  return value.charAt();
 }
 
 /**
@@ -236,8 +236,11 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(
+    2,
+    '0'
+  )}`;
 }
 
 /**
@@ -299,8 +302,9 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'];
+  return str.split('').filter((el) => vowels.includes(el)).length;
 }
 
 /**
@@ -316,8 +320,19 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let string = str;
+  const symbols = ['?', '!'];
+  string =
+    str.includes(symbols[0]) || str.includes(symbols[1]) ? str.slice(-1) : str;
+  const palindrome = string
+    .toLowerCase()
+    .split(' ')
+    .join('')
+    .split('')
+    .reverse()
+    .join('');
+  return string.toLowerCase().split(' ').join('') === palindrome;
 }
 
 /**
